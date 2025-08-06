@@ -17,13 +17,6 @@ redisClient.on('error', (err) => {
 // Não precisamos esperar (await) aqui, o cliente gerencia a fila de comandos.
 redisClient.connect();
 
-
-// Rota principal para teste
-app.get('/', (req, res) => {
-  res.send('<h1>Backend com a biblioteca "redis" no Ar!</h1><p>Visite /api/setup-data para inicializar o banco.</p>');
-});
-
-
 // Rota para inicializar o banco de dados
 app.get('/api/setup-data', async (req, res) => {
   try {
