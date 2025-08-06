@@ -1,0 +1,427 @@
+.editor-header {
+  
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  
+  justify-content: space-between;
+}
+.editor-page-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.editor-form-grid {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
+}
+.editor-main-column, .editor-sidebar-column {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 2rem;
+}
+
+.editor-sidebar-column{
+  width: 250px;
+  max-height: 600px;
+}
+.editor-main-column{
+  max-width: 100%;
+}
+
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 1rem;
+}
+#editor-article-title {
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 700;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    padding: 0;
+}
+#editor-article-title::placeholder {
+    color: var(--text-color-light);
+}
+.editor-toolbar {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+.editor-toolbar select, .editor-toolbar button {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
+    cursor: pointer;
+}
+#editor-article-content {
+    min-height: 400px;
+    outline: none;
+    line-height: 1.7;
+}
+#editor-article-content pre {
+    background-color: var(--link-hover-bg);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    white-space: pre-wrap;
+}
+#editor-article-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+}
+
+
+.editor-insert-block {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #007BFF, #00C6FF);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.editor-insert-block:hover {
+    transform: scale(1.05);
+}
+
+.editor-insert-block select {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+/* Ícone fake opcional para deixar mais bonito */
+.editor-insert-block::before {
+    content: "+";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 28px;
+    color: white;
+    pointer-events: none;
+}
+
+
+.dropdown-circle {
+  position: absolute;
+  top: 25%;      /* meio vertical */
+  right: 30%;   /* distancia da direita */
+  transform: translateY(-50%); /* centraliza vertical */
+  
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #007BFF, #00C6FF);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  cursor: pointer;
+  z-index: 1000;
+  transition: transform 0.2s ease;
+  user-select: none;
+}
+
+.dropdown-circle:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.dropdown-button {
+  all: unset;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  line-height: 1;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 70px; /* abre logo abaixo do botão */
+  left: 0;
+  width: 180px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  display: none;
+  z-index: 1001;
+  animation: fadeIn 0.2s ease forwards;
+}
+
+.dropdown-menu li {
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  user-select: none;
+}
+
+.dropdown-menu li:hover {
+  background: #f0f0f0;
+  font-weight: bold;
+  color: #007BFF;
+}
+
+/* Animação para aparecer o dropdown */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Adicione este CSS ao seu arquivo de estilos */
+
+.editor-main-column {
+    /* É importante que o pai do elemento 'sticky' não tenha 'overflow: hidden' ou 'overflow: auto' */
+    /* Nenhum estilo específico necessário aqui, apenas um lembrete */
+}
+
+.editor-toolbar {
+    /* Comportamento Sticky */
+    position: -webkit-sticky; /* Para compatibilidade com Safari antigo */
+    position: sticky;
+    top: 0; /* Fixa no topo da viewport quando a rolagem a alcança */
+
+    /* Melhorias visuais para quando a barra estiver 'flutuando' */
+    background-color: #ffffff; /* Garante que o texto abaixo não apareça através da barra */
+    z-index: 100; /* Garante que a barra fique acima do conteúdo do artigo */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+    /* Uma sombra sutil para dar a impressão de que está 'acima' da página */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+    /* Transição suave para um efeito mais agradável (opcional) */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Opcional: Estilo para o campo de título, para que a barra não o sobreponha */
+#editor-article-title {
+    /* Adiciona um pouco de margem para que não fique colado na barra de ferramentas */
+    margin-bottom: 1rem; 
+}
+
+/* O editor de conteúdo em si */
+.editor-content {
+    /* Define uma altura mínima para que o efeito de rolagem seja testável */
+    min-height: 150vh; /* Apenas para teste, pode remover isso */
+    padding: 15px;
+    border: 1px solid #cccccc18;
+    border-radius: 4px;
+    outline: none; /* Remove a borda padrão ao focar */
+}
+
+/* Oculta o input de arquivo, como já estava no seu JS */
+.hidden {
+    display: none;
+}
+
+/* Estilos base para todos os botões com a classe .btn */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.75rem 1.2rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    white-space: nowrap;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-color-dark);
+}
+
+
+/* --- Container da Barra de Ferramentas --- */
+.editor-toolbar {
+    display: flex; /* Alinha os itens horizontalmente */
+    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+    align-items: center; /* Alinha todos os itens verticalmente ao centro */
+    gap: 4px; /* Pequeno espaço entre cada item */
+    padding: 8px;
+    
+    /* Estilos da barra fixa (sticky) que já tínhamos */
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa; /* Um cinza muito claro, quase branco */
+    border: 1px solid #dee2e6;
+    border-radius: 12px; /* Cantos um pouco mais arredondados */
+    margin-bottom: 1rem;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Estilo COMUM para Botões e o Select --- */
+/* Aplicamos um estilo base para que todos comecem iguais */
+.editor-toolbar button,
+.editor-toolbar select {
+    background-color: transparent;
+    border: none;
+    height: 38px; /* Altura uniforme */
+    border-radius: 8px; /* Cantos arredondados */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #343a40; /* Cor escura para o texto/ícone */
+}
+
+.editor-toolbar button:hover,
+.editor-toolbar select:hover {
+    background-color: #e9ecef; /* Um fundo cinza claro ao passar o mouse */
+}
+
+/* --- Estilo específico para os BOTÕES --- */
+/* Isso garante que tanto texto (B, I) quanto emojis (🔗) fiquem centralizados */
+.editor-toolbar button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px; /* Botões quadrados */
+    padding: 0;
+    font-size: 1.1rem; /* Tamanho bom para texto e emojis */
+}
+
+/* Ajuste fino para os botões com as tags <b>, <i> e <u> */
+.editor-toolbar button b,
+.editor-toolbar button i,
+.editor-toolbar button u {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+
+/* --- Separador Vertical --- */
+.toolbar-separator {
+    width: 1px;
+    height: 24px;
+    background-color: #ced4da;
+    margin: 0 8px;
+}
+
+/* --- Estilo para o SELECT (Parágrafo, Título...) --- */
+.editor-toolbar select {
+    padding: 0 30px 0 12px; /* Espaço para o texto e para a seta personalizada */
+    font-weight: 500;
+    /* Remove a aparência padrão do sistema operacional */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Adiciona nossa própria seta usando SVG embutido no CSS */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+}
+
+/* --- ESTADO ATIVO/SELECIONADO --- */
+/* Esta classe precisa ser adicionada via JavaScript quando uma formatação está ativa */
+.editor-toolbar button.is-active {
+    background-color: #cfe2ff; /* Um azul claro para indicar seleção */
+    color: #0c63e4; /* Cor mais escura para o texto/emoji no estado ativo */
+}
+
+/* =================================================================== */
+/* =================== DARK THEME STYLES - EDITOR ================== */
+/* =================================================================== */
+
+/* --- Container da Barra de Ferramentas (Modo Escuro) --- */
+[data-theme="dark"] .editor-toolbar {
+    background-color: #2b2d31; /* Cor de fundo principal, um cinza bem escuro */
+    border-color: #404249;     /* Borda sutilmente mais clara que o fundo */
+    box-shadow: none;          /* Sombras não costumam funcionar bem em temas escuros */
+}
+
+/* --- Cor do texto/ícone/emoji para Botões e Select --- */
+[data-theme="dark"] .editor-toolbar button,
+[data-theme="dark"] .editor-toolbar select {
+    color: #b5bac1; /* Cor do texto e ícones, um cinza claro */
+}
+
+/* --- Efeito Hover (passar o mouse) --- */
+[data-theme="dark"] .editor-toolbar button:hover,
+[data-theme="dark"] .editor-toolbar select:hover {
+    background-color: #404249; /* Fundo mais claro para o hover */
+}
+
+/* --- Separador Vertical --- */
+[data-theme="dark"] .toolbar-separator {
+    background-color: #404249;
+}
+
+/* --- Estado Ativo/Selecionado (o mais importante!) --- */
+[data-theme="dark"] .editor-toolbar button.is-active {
+    background-color: #404754; /* Fundo de destaque, um cinza-azulado */
+    color: #ffffff;           /* Texto/ícone branco para máximo contraste */
+}
+
+/* --- ATUALIZAÇÃO CRÍTICA: A Seta do Select --- */
+/* Precisamos fornecer uma nova seta com a cor clara para o modo escuro */
+[data-theme="dark"] .editor-toolbar select {
+    /* A única mudança é a cor do 'stroke' no final do código do SVG: de %23343a40 para %23b5bac1 */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23b5bac1' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+}
+
+/* Bônus: Estilizar o conteúdo do editor também */
+[data-theme="dark"] #editor-article-content {
+    background-color: #313338;
+    color: #f2f3f5;
+    border-color: #404249;
+}
+
+[data-theme="dark"] #editor-article-content:focus {
+    border-color: #5865f2; /* Cor de destaque (opcional) */
+}
+

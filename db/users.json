@@ -1,0 +1,20 @@
+[
+  {
+    "id": 101,
+    "name": "Ana Silva",
+    "email": "ana.silva@example.com",
+    "role": "admin"
+  },
+  {
+    "id": 102,
+    "name": "Bruno Costa",
+    "email": "bruno.costa@example.com",
+    "role": "editor"
+  },
+  {
+    "id": 103,
+    "name": "Carla Dias",
+    "email": "carla.dias@example.com",
+    "role": "viewer"
+  }
+]
