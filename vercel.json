@@ -28,6 +28,10 @@
     {
       "src": "theme/**",
       "use": "@vercel/static"
+    },
+    {
+      "src": "api/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
