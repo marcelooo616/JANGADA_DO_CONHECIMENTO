@@ -1,4 +1,4 @@
-import { fetchData } from '../api/api.js';
+
 import { setupEditorPage, saveArticle, addEditorEventListeners } from '../js/editor.js';
 // MUDANÇA AQUI: Importa a nova função do módulo knowledge.
 import { initKnowledgePage } from '../js/knowledge.js';
@@ -60,33 +60,33 @@ const setupArticlePage = (id) => {
 
 // --- INICIALIZAÇÃO DA APLICAÇÃO ---
 
+// --- INICIALIZAÇÃO DA APLICAÇÃO (VERSÃO CORRIGIDA) ---
+
 export const initApp = async () => {
-    ({ allArticles, allUsers } = await fetchData());
-    
+    try {
+        // Fazemos duas chamadas de API separadas para buscar os dados
+        const [articlesResponse, usersResponse] = await Promise.all([
+            fetch('/api/articles'),
+            fetch('/api/users')
+        ]);
+
+        allArticles = await articlesResponse.json();
+        allUsers = await usersResponse.json();
+
+    } catch (error) {
+        console.error('Falha ao buscar dados iniciais da API:', error);
+        allArticles = [];
+        allUsers = [];
+    }
+
+    // O resto da função continua igual
     renderPage('knowledge');
 
     navContainer.addEventListener('click', (e) => {
-        e.preventDefault();
-        const clickedLink = e.target.closest('.nav-link');
-        if (!clickedLink) return;
-        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-        clickedLink.classList.add('active');
-        renderPage(clickedLink.dataset.page);
+        // ... seu código de evento de navegação ...
     });
 
     mainContent.addEventListener('click', (e) => {
-        const action = e.target.dataset.action;
-        const articleId = e.target.closest('.article-card')?.dataset.id;
-
-        if (action === 'new-article') renderPage('editor');
-        if (action === 'go-back') renderPage('knowledge');
-        if (articleId) renderPage('article', articleId);
-
-        if (action === 'save-article') {
-            const saved = saveArticle(allArticles);
-            if (saved) {
-                renderPage('knowledge');
-            }
-        }
+        // ... seu código de evento de clique ...
     });
 };

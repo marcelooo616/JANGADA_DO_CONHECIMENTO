@@ -84,6 +84,17 @@ app.post('/api/upload-image', async (req, res) => {
     }
 });
 
+// NOVA ROTA - GET para buscar todos os usuários
+app.get('/api/users', async (req, res) => {
+  try {
+    const users = await kv.get('users') || [];
+    res.status(200).json(users);
+  } catch (error) {
+    console.error('Erro ao buscar usuários:', error);
+    res.status(500).json({ message: 'Erro interno do servidor.' });
+  }
+});
+
 
 module.exports = app;
 
