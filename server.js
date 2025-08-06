@@ -84,6 +84,29 @@ app.post('/api/upload-image', async (req, res) => {
     }
 });
 
+// ROTA PARA BUSCAR ARTIGOS
+app.get('/api/articles', async (req, res) => {
+  try {
+    const articles = await kv.get('articles') || [];
+    res.status(200).json(articles);
+  } catch (error) {
+    console.error('Erro ao buscar artigos:', error);
+    res.status(500).json({ message: 'Erro interno do servidor.' });
+  }
+});
+
+// ROTA TEMPORÁRIA PARA INICIALIZAR O BANCO DE DADOS
+app.get('/api/setup-data', async (req, res) => {
+  try {
+    await kv.set('articles', []); // Cria a chave 'articles' com um array vazio
+    await kv.set('users', []);   // Cria a chave 'users' com um array vazio
+    res.status(200).send('Dados inicializados com sucesso! As chaves "articles" e "users" foram criadas.');
+  } catch (error) {
+    console.error('Erro ao inicializar dados:', error);
+    res.status(500).json({ message: 'Erro ao inicializar dados.' });
+  }
+});
+
 // NOVA ROTA - GET para buscar todos os usuários
 app.get('/api/users', async (req, res) => {
   try {
